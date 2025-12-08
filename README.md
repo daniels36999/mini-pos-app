@@ -1,122 +1,92 @@
-POS Billing System – Next.js + Electron + Prisma
+# **MiniPOS – Sistema de Facturación Electrónica tipo POS**
 
-Un sistema POS (Point of Sale) moderno construido con Next.js, TypeScript, TailwindCSS, Prisma y Electron.
-Diseñado como un proyecto base para crear aplicaciones de facturación local (escritorio) con UI web.
+MiniPOS es un sistema ligero de facturación electrónica tipo POS, pensado para demostraciones, pequeños negocios, proyectos personales y aprendizaje. Incluye frontend en Next.js, base de datos con Prisma y empaquetado como aplicación de escritorio mediante Electron.
 
-Ideal para aprender arquitectura híbrida: Next.js (frontend/backend) + Electron (desktop) + Prisma (database).
+---
 
-📋 Tabla de contenidos
+## 🚀 **Tecnologías utilizadas**
+- **Next.js + TypeScript**
+- **Tailwind CSS**
+- **Prisma ORM**
+- **PostgreSQL / SQLite**
+- **Electron + electron-builder**
+- **API Routes (App Router)**
 
-Descripción
+---
 
-Tecnologías
+# 📦 **Instalación y Configuración**
 
-Instalación
-
-Scripts disponibles
-
-Estructura del proyecto
-
-Estado del proyecto
-
-🧠 Descripción
-
-Este proyecto implementa un sistema POS básico, permitiendo gestionar productos y ventas.
-Usa Next.js App Router como backend interno, Prisma ORM para la base de datos y Electron para empaquetar una app de escritorio.
-
-Características iniciales:
-
-✔ CRUD de productos
-✔ CRUD de ventas
-✔ UI con TailwindCSS
-✔ API interna usando Next.js (App Router)
-✔ Base para transformar Next.js en software local con Electron
-
-⚙️ Tecnologías principales
-
-Next.js 14 (App Router)
-
-TypeScript
-
-Tailwind CSS
-
-Prisma ORM
-
-SQLite (por defecto)
-
-Electron 28
-
-Electron Builder (para empaquetar)
-
-🚀 Instalación
-1. Crear proyecto Next.js con TypeScript
+## **PASO 1: Crear proyecto Next.js con TypeScript**
+```bash
 npx create-next-app@latest pos-sistema
+Selecciona:
 
-
-Responde lo siguiente:
-
-✓ TypeScript? → Yes
-✓ ESLint? → Yes
-✓ Tailwind CSS? → Yes
-✓ Use src/ directory? → Yes
-✓ Use App Router? → Yes
-✓ Customize import alias? → No
-
-2. Entrar al proyecto
+yaml
+Copiar código
+✓ TypeScript: Yes
+✓ ESLint: Yes
+✓ Tailwind CSS: Yes
+✓ Use src/: Yes
+✓ App Router: Yes
+✓ Customize alias: No
+PASO 2: Entrar al proyecto
+bash
+Copiar código
 cd pos-sistema
-
-3. Instalar dependencias adicionales
+PASO 3: Instalar dependencias necesarias
+🔹 Prisma y base de datos
+bash
+Copiar código
 npm install prisma @prisma/client
 npm install --save-dev @types/node
-
-4. Instalar dependencias de Electron
+🔹 Electron
+bash
+Copiar código
 npm install --save-dev electron electron-builder concurrently wait-on cross-env
-
-5. Inicializar Prisma
+🔹 Inicializar Prisma
+bash
+Copiar código
 npx prisma init
+PASO 4: CONFIGURAR BASE DE DATOS 🗄️
+A. Configurar .env
+Crea o edita el archivo .env en la raíz del proyecto:
 
-📁 Estructura del proyecto
+env
+Copiar código
+# Base de datos PostgreSQL
+DATABASE_URL="postgresql://postgres:tu_password@localhost:5432/pos_db?schema=public"
+Recuerda: reemplaza
+tu_password → por la contraseña que pusiste al instalar PostgreSQL.
+
+📁 PASO 5: Estructura del Proyecto recomendada
+lua
+Copiar código
 pos-sistema/
-├── electron/              # Lógica principal de Electron
+├── electron/              
 │   ├── main.ts
 │   └── preload.ts
 ├── prisma/
-│   └── schema.prisma      # Modelos de la base de datos
+│   └── schema.prisma
 ├── src/
 │   ├── app/
-│   │   ├── page.tsx       # Página principal
+│   │   ├── page.tsx
 │   │   ├── layout.tsx
 │   │   ├── productos/
 │   │   │   └── page.tsx
 │   │   ├── ventas/
 │   │   │   └── page.tsx
-│   │   └── api/           # Endpoints (backend)
+│   │   └── api/
 │   │       ├── productos/
 │   │       │   └── route.ts
 │   │       └── ventas/
 │   │           └── route.ts
-│   ├── components/        # Componentes reutilizables
+│   ├── components/
 │   │   ├── ProductCard.tsx
 │   │   ├── CartItem.tsx
 │   │   └── Navbar.tsx
-│   └── lib/               # Utilidades y conexión DB
+│   └── lib/
 │       ├── db.ts
 │       └── types.ts
-├── .env                   # Variables de entorno
+├── .env
 ├── package.json
-├── tsconfig.json
-└── next.config.js
-
-🧪 Scripts disponibles (según configuración futura)
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "electron:dev": "concurrently \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
-  "electron:build": "electron-builder"
-}
-
-📌 Estado del proyecto
-
-🔧 En desarrollo
-Este repositorio sirve como base inicial para un sistema POS moderno basado en tecnologías actuales.
+├── ts
