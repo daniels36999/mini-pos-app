@@ -1,0 +1,3 @@
+
+#RESETEAR BD
+npx prisma migrate reset
